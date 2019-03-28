@@ -1,11 +1,13 @@
 import socket
 
 listenSocket = socket.socket()
-Port = 8000
-maxConnection = 10
-IP = socket.gethostbyname(socket.gethostname())
 
-listenSocket.bind(('',Port))
+maxConnection = 10
+
+IP = input("IP : ")
+Port = (int)(input("Port: "))
+
+listenSocket.bind((IP,Port))
 
 listenSocket.listen(maxConnection)
 print("Server started at " + IP + " on port " + str(Port) )
