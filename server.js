@@ -56,7 +56,7 @@ server.on('connection', (client) => {
 		    	case 'list':
 		    		var msg = ''
 			    	for (var i = 0; i < connectedClients.length ; i++) {
-			    		msg += JSON.stringify(connectedClients[i]._peername) + '\n'
+			    		msg += JSON.stringify(connectedClients[i]._peername) + ' writable: ' + connectedClients[i].writable + '\n'
 			    	}
 			    	client.write(msg)
 			    	break
@@ -67,7 +67,12 @@ server.on('connection', (client) => {
 			    	}
 			    	var index = parseInt(arg[1])
 			    	if(index < connectedClients.length ){
-			    		connectedClients[index].write(msg)
+                        if(connectedClients[index].writable){
+			    		   connectedClients[index].write(msg)
+                        }
+                        else{
+                            client.write('Cannot send! This socket has been closed.')
+                        }
 			    	}
 			    	break
 		    }
@@ -81,7 +86,6 @@ server.on('connection', (client) => {
 
     client.on('end', () => {
         console.log('Client disconnect.')
-
         server.getConnections(function (err, count) {
             if(!err)
             {
