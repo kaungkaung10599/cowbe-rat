@@ -33,9 +33,7 @@ server.on('connection', (client) => {
     console.log(`Remote Address : ${client.remoteAddress}:${client.remotePort}`)
     console.log('Connected!')
 
-    client.setEncoding('utf-8')
-
-    //client.setTimeout(5000)
+    client.setEncoding('utf-8')1
 
     var logged_in = false
     
@@ -75,6 +73,9 @@ server.on('connection', (client) => {
                         }
 			    	}
 			    	break
+                case 'show':
+                     console.log(connectedClients[arg[1]])
+                     break
 		    }
 		}
 		else {
@@ -101,6 +102,7 @@ server.on('connection', (client) => {
     // When client timeout.
     client.on('timeout', function () {
         console.log('Client request time out. ')
+        client.end()
     })
 
  })
