@@ -33,7 +33,7 @@ server.on('connection', (client) => {
     console.log(`Remote Address : ${client.remoteAddress}:${client.remotePort}`)
     console.log('Connected!')
 
-    client.setEncoding('utf-8')1
+    client.setEncoding('utf-8')
 
     var logged_in = false
     
