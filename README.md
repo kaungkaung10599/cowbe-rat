@@ -1,1 +1,1 @@
-# cowbe-rat
+# TCP socket communication
